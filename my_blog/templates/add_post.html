@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Create a new post{% endblock  %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    <h3>Add Post</h3>
+    </br></br>
+    <div class="mb-3">
+        <form method="POST" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {{ form.media }}
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Title:</label>
+                    <input type="text" class="form-control" name='title' placeholder='Title' required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Title Tag:</label>
+                    <input type="text" class="form-control" name='title tag' placeholder='Title Tag' required>
+                </div>
+                
+                <label for="exampleFormControlInput1" class="form-label">Author:</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option value={{ form.author }}
+                </select></br>
+
+                <label for="exampleFormControlTextarea1" class="form-label">Write Blog:</label></br>
+                {{ form.body }}
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Snippet:</label>
+                    <input type="text" class="form-control" name='snippet' placeholder='Snippet' required>
+                </div>
+                
+            <label for="exampleFormControlInput1" class="form-label">Add Image:</label></br>
+            {{ form.header_image }}</br></br>
+            <button class="btn btn-secondary">Post</button>
+        </form>
+    </div>
+
+{% else %}
+
+You are not allowed here!
+
+{% endif %}
+
+
+{% endblock %}
